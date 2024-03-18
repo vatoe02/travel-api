@@ -45,14 +45,14 @@ class CreateUserCommand extends Command
                 $this->error($error);
             }
 
-            return;
+            return -1;
         }
 
         $role = Role::where('name', $roleName)->first();
         if (! $role) {
             $this->error('Role not found');
 
-            return;
+            return -1;
         }
 
         DB::transaction(function () use ($user, $role) {
